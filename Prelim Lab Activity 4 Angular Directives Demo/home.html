@@ -1,0 +1,17 @@
+<section class="hero">
+  <h1>{{ heroTitle() }}</h1>
+  <p>{{ heroSubtitle }}</p>
+  <button routerLink="/directives">Preview Directives</button>
+  <button routerLink="/data-binding">Explore Data Binding</button>
+</section>
+
+<section class="features">
+  <h2>Lab Feature Pages</h2>
+  @for (card of featureCards(); track card.route) {
+    <article class="feature-card">
+      <h3>{{ card.title }}</h3>
+      <p>{{ card.description }}</p>
+      <a [routerLink]="card.route">{{ card.actionLabel }}</a>
+    </article>
+  }
+</section>

@@ -1,0 +1,218 @@
+<section class="cv-container">
+  <header class="cv-header">
+    <h1 class="name">Kurt Juztine S. Mangalino</h1>
+    <div class="contact-info">
+      @for (contact of contactInfo; track contact.label) {
+        <span class="contact-item">
+          <strong>{{ contact.label }}:</strong>
+          @if (contact.href) {
+            <a [href]="contact.href">{{ contact.value }}</a>
+          } @else {
+            {{ contact.value }}
+          }
+        </span>
+        @if ($index < contactInfo.length - 1) {
+          <span class="separator">•</span>
+        }
+      }
+    </div>
+  </header>
+</section>
+
+<section class="cv-container profile-section">
+  <h2 class="section-title">Personal Profile</h2>
+  <p class="profile-text">
+    A passionate Web Developer student aspiring to become a full-stack engineer.
+    I am innovative, adaptive, and attentive to details, always striving for
+    continuous improvement through academic and personal projects.
+  </p>
+  <button (click)="toggleExperience()">
+    @if (showExperience) { Hide Experience } @else { Show Experience }
+  </button>
+  @if (showExperience) {
+    <p class="profile-text">
+      Recently delivered a solo library app prototype and contributed design
+      explorations for an e-commerce concept while collecting certifications in
+      HTML/CSS, JavaScript Algorithms, and Backend APIs via freeCodeCamp.
+    </p>
+  }
+</section>
+
+<section class="cv-container skills-section">
+  <h2 class="section-title">Key Skills</h2>
+  <div class="skills-grid">
+    @for (category of skillCategories; track category.title) {
+      <article class="skills-column">
+        <h3>{{ category.title }}</h3>
+        <ul class="skills-list">
+          @for (item of category.items; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="cv-container technical-skills">
+  <h2 class="section-title">Technical Proficiencies</h2>
+  <div class="tech-categories">
+    @for (stack of technicalStacks(); track stack.heading) {
+      <article class="tech-category">
+        <h3 class="category-title">{{ stack.heading }}</h3>
+        <p class="tech-items">{{ stack.body }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="cv-container directives-lab">
+  <h2 class="section-title">Angular Directives Lab</h2>
+
+  <div class="directive-block">
+    <h3>Static &#64;if Condition</h3>
+    <table class="demo-table">
+      <tr>
+        <td>
+          @if (isStaticNoteVisible === true) {
+            <h2>This is a static note with true value!</h2>
+          } @else {
+            <h2>This static note has false value.</h2>
+          }
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="directive-block">
+    <h3>Show / Hide Note</h3>
+    <table class="demo-table">
+      <tr>
+        <td>
+          @if (isNoteVisible === true) {
+            <p>This is a note!</p>
+          }
+        </td>
+        <td>
+          <button (click)="showNote()">Show Note</button>
+        </td>
+        <td>
+          <button (click)="hideNote()">Hide Note</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="directive-block">
+    <h3>Toggle Paragraph Visibility</h3>
+    <table class="demo-table">
+      <tr>
+        <td>
+          <button (click)="toggleNote()">
+            {{ isParagraphVisible ? 'Hide' : 'Show' }}
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          @if (isParagraphVisible) {
+            <p>This is the paragraph content.</p>
+          }
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="directive-block">
+    <h3>Static Month Selector</h3>
+    <table class="demo-table">
+      <tr>
+        <td>
+          @if (monthNameStatic == 'Jan') {
+            <p>January</p>
+          } @else if (monthNameStatic == 'Feb') {
+            <p>February</p>
+          } @else if (monthNameStatic == 'Mar') {
+            <p>March</p>
+          }
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="directive-block">
+    <h3>Dynamic Month Filter</h3>
+    <table class="demo-table">
+      <tr>
+        <td>
+          @if (monthNameDynamic == 'Jan') {
+            <p>January</p>
+          } @else if (monthNameDynamic == 'Feb') {
+            <p>February</p>
+          } @else if (monthNameDynamic == 'Mar') {
+            <p>March</p>
+          } @else {
+            <p>Wrong input!</p>
+          }
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="monthNameDynamic" maxlength="3" />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="directive-block">
+    <h3>&#64;for Array Rendering</h3>
+    <table class="demo-table">
+      <tr>
+        <td>
+          <ul class="city-list">
+            @for (item of cityList; track $index) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="directive-block">
+    <h3>Student List Status Table</h3>
+    <table class="demo-table full-width">
+      <thead>
+        <tr>
+          <th>Student No</th>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of studentList; track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ item.stud_name }}</td>
+            <td>{{ item.course }}</td>
+            <td>
+              @if (item.isActive === true) {
+                <p>Active</p>
+              } @else {
+                <p>Inactive</p>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="directive-block reflection">
+    <h3>Reflection Questions</h3>
+    <ol>
+      <li>{{ reflectionAnswers[0] }}</li>
+      <li>{{ reflectionAnswers[1] }}</li>
+      <li>{{ reflectionAnswers[2] }}</li>
+    </ol>
+  </div>
+</section>

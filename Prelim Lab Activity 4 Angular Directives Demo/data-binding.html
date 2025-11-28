@@ -1,0 +1,39 @@
+<section class="bindings-grid">
+  <header>
+    <h2>{{ message }}</h2>
+    <p>{{ title }}</p>
+    <small>{{ description }}</small>
+  </header>
+
+  <figure>
+    <img [src]="imageUrl" [width]="w" [height] = "h" [alt]="altText">
+    <figcaption>Property binding keeps this preview responsive.</figcaption>
+  </figure>
+
+  <p [style.color]="textColor">
+    The color of this sentence changes via style binding.
+  </p>
+
+  <p [class.highlighted]="isHighlighted">
+    Toggle the highlight class to preview class binding.
+  </p>
+
+  <div>
+    <label>
+      Two-way binding
+      <input [(ngModel)]="yourName" placeholder="Enter your name">
+    </label>
+    <p>Hello, {{ yourName }}!</p>
+  </div>
+
+  <div>
+    <button (click)="increment()">Increment</button>
+    <button (click)="decrement()">Decrement</button>
+    <p>Count: {{ count }}</p>
+  </div>
+
+  <div>
+    <button (click)="toggleHighlight()">Toggle Highlight</button>
+    <button (click)="randomizeColor()">Randomize Text Color</button>
+  </div>
+</section>

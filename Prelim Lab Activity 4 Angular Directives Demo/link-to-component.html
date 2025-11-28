@@ -1,0 +1,21 @@
+<section class="link-container">
+  <header>
+    <p class="badge">localhost:4200/link-to-component</p>
+    <h1>{{ headerText }}</h1>
+    <p class="subheading">
+      {{ subheading }}
+    </p>
+  </header>
+
+  <div class="link-grid">
+    @for (item of linkItems; track item.route) {
+      <article class="link-card">
+        <h2>{{ item.label }}</h2>
+        <p>{{ item.description }}</p>
+        <a [routerLink]="item.route">Go to {{ item.label }}</a>
+      </article>
+    }
+  </div>
+
+</section>
+
